@@ -24,8 +24,4 @@ abstract class WebService extends Service {
         $this->dispatchFinished();
     }
 
-    abstract public function getActionPath();
-
-    abstract public function getDispatchConf();
-
 }

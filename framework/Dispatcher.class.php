@@ -10,8 +10,6 @@ class Dispatcher implements IDispatcher {
 
     function __construct(WebService $webService) {
         $this->webService = $webService;
-        $dispatchConf = $webService->getDispatchConf();
-        Config::loadConfig($dispatchConf);
     }
 
     public static function addRoute($route, $action) {
@@ -19,7 +17,6 @@ class Dispatcher implements IDispatcher {
     }
 
     public function dispatch($requestUri) {
-        // $routes = Config::configForKeyPath('dispatch');
         $routes = self::$routes;
 
         foreach ($routes as $routeRegx => $actionName) {
@@ -28,9 +25,7 @@ class Dispatcher implements IDispatcher {
                     MRequest::setParam($key, $value);
                 }
 
-                $actionPath = $this->webService->getActionPath();
-
-                $classFile = $actionPath.$actionName.'.class.php';
+                $classFile = $actionName.'.class.php';
 
                 DAssert::assert(file_exists($classFile),
                     'ui action does not exist, file='.$classFile, __FILE__, __LINE__);
