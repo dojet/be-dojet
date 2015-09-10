@@ -1,6 +1,8 @@
 <?php
 class Dispatcher implements IDispatcher {
 
+    protected static $routes = array();
+
     /**
      * @var BaseWebService
      **/
@@ -12,10 +14,13 @@ class Dispatcher implements IDispatcher {
         Config::loadConfig($dispatchConf);
     }
 
-    public function dispatch($requestUri) {
-        $routes = Config::configForKeyPath('dispatch');
+    public static function addRoute($route, $action) {
+        self::$routes[$route] = $action;
+    }
 
-        DAssert::assert(is_array($routes), 'route error');
+    public function dispatch($requestUri) {
+        // $routes = Config::configForKeyPath('dispatch');
+        $routes = self::$routes;
 
         foreach ($routes as $routeRegx => $actionName) {
             if ( preg_match($routeRegx, $requestUri, $reg) ) {
