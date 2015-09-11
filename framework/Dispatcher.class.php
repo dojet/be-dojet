@@ -1,4 +1,8 @@
 <?php
+namespace Dojet;
+
+use \Dojet\IDispatcher;
+
 class Dispatcher implements IDispatcher {
 
     protected static $routes = array();

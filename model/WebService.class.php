@@ -4,6 +4,8 @@
  * @author setimouse@gmail.com
  * @since 2014 5 2
  */
+namespace Dojet;
+
 abstract class WebService extends Service {
 
     public function dispatcher() {

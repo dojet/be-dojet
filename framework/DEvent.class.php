@@ -5,6 +5,8 @@
  * @author liyan
  * @since 2015 7 16
  */
+namespace Dojet;
+
 class DEvent {
 
     protected static $hooks = array();

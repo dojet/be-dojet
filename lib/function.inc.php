@@ -1,4 +1,6 @@
 <?php
+namespace Dojet;
+
 /*********************  charset **********************/
 function gb2u($s) {
     return _iconvEx('GB18030', 'UTF-8', $s);

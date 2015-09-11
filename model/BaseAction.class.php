@@ -5,6 +5,8 @@
  * @author liyan
  * @version 2012.12.24
  */
+namespace Dojet;
+
 abstract class BaseAction {
 
     protected $tplData;

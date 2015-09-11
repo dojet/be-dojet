@@ -1,4 +1,6 @@
 <?php
+namespace Dojet;
+
 class DAssert {
 
 	/**

@@ -7,6 +7,8 @@
  * @author setimouse@gmail.com
  * @since 2014 5 4
  */
+namespace Dojet;
+
 class XPath {
 
     public static function path($xpath, $array) {
