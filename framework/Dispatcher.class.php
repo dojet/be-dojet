@@ -16,18 +16,20 @@ class Dispatcher implements IDispatcher {
         $this->webService = $webService;
     }
 
-    public static function addRoute($route, $action) {
-        self::$routes[$route] = $action;
+    public static function addRoute($route, $action, $namespace = '') {
+        self::$routes[$route] = array('action' => $action, 'namespace' => $namespace);
     }
 
     public function dispatch($requestUri) {
-        $routes = self::$routes;
 
-        foreach ($routes as $routeRegx => $actionName) {
+        foreach (self::$routes as $routeRegx => $actionInfo) {
             if ( preg_match($routeRegx, $requestUri, $reg) ) {
                 foreach ($reg as $key => $value) {
                     MRequest::setParam($key, $value);
                 }
+
+                $actionName = $actionInfo['action'];
+                $namespace = $actionInfo['namespace'];
 
                 $classFile = $actionName.'.class.php';
 
@@ -36,7 +38,7 @@ class Dispatcher implements IDispatcher {
 
                 require_once($classFile);
 
-                $className = basename($actionName);
+                $className = $namespace.basename($actionName);
                 $action = new $className;
 
                 DAssert::assert($action instanceof BaseAction,
