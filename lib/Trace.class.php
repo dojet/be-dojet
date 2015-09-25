@@ -5,8 +5,6 @@
  * @author liyan
  * @since 2009
  */
-namespace Dojet;
-
 class Trace implements ITraceDelegate {
 
     private static $instance;

@@ -7,8 +7,6 @@
  * @author liyan
  * @since 2014 7 28
  */
-namespace Dojet;
-
 interface ITraceDelegate {
 
     public function write($msg, $level, $file, $line);

@@ -7,8 +7,6 @@
  * @author liyan
  * @since 2015 9 11
  */
-namespace Dojet;
-
 class MAutoloadPath {
 
     protected $autoloadPaths = array();

@@ -1,7 +1,4 @@
 <?php
-
-namespace Dojet;
-
 class MRequest {
 
     private static $_params;

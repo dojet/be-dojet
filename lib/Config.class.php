@@ -1,6 +1,4 @@
 <?php
-namespace Dojet;
-
 class Config {
 
     private static $config;

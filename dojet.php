@@ -1,6 +1,4 @@
 <?php
-namespace Dojet;
-
 define('DOJET_PATH', realpath(dirname(__FILE__)).'/');
 define('FRAMEWORK', DOJET_PATH.'framework/');
 define('DLIB',      DOJET_PATH.'lib/');
@@ -16,17 +14,11 @@ require FRAMEWORK.'DAutoloader.class.php';
 $dojet = Dojet::getInstance();
 
 $autoloader = DAutoloader::getInstance();
-// $autoloader->addAutoloadPathArray(
-//     array(
-//         FRAMEWORK, DLIB, DMODEL, DUTIL
-//         )
-//     );
-
-$autoloader->addNamespacePathArray(__NAMESPACE__,
+$autoloader->addAutoloadPathArray(
     array(
         FRAMEWORK, DLIB, DMODEL, DUTIL
-        )
-    );
+    )
+);
 $dojet->addAutoloader($autoloader);
 
 ////////////////////////////////////////
