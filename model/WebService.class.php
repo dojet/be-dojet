@@ -10,7 +10,7 @@ abstract class WebService extends Service {
         return new Dispatcher($this);
     }
 
-    public function dispatchFinished() {}
+    protected function dispatchFinished() {}
 
     public function requestUriWillDispatch($requestUri) {
         $requestUri = substr($requestUri, 1);
@@ -20,6 +20,7 @@ abstract class WebService extends Service {
     public function dojetDidStart() {
         $requestUri = $this->requestUriWillDispatch($_SERVER['REQUEST_URI']);
         $dispatcher = $this->dispatcher();
+        DAssert::assert($dispatcher instanceof IDispatcher, 'illegal dispatcher');
         $dispatcher->dispatch($requestUri);
         $this->dispatchFinished();
     }

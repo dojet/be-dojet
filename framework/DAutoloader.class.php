@@ -71,7 +71,6 @@ class DAutoloader implements IAutoloader {
     public function addNamespacePath($namespace, $path) {
         $ns = strtok($namespace, '\\');
         $ref = &$this->namespacePath;
-        // var_dump($ref);
         while (false !== $ns) {
             if (!isset($ref[$ns])) {
                 $ref[$ns] = array();
