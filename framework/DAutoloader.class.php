@@ -20,6 +20,14 @@ class DAutoloader implements IAutoloader {
         $this->autoloadPath = new MAutoloadPath();
     }
 
+    public static function addAutoloader(IAutoloader $autoloader) {
+        spl_autoload_register(array($autoloader, 'autoload'));
+    }
+
+    public static function removeAutoloader(IAutoloader $autoloader) {
+        spl_autoload_unregister(array($autoloader, 'autoload'));
+    }
+
     public function addAutoloadPath($autoloadPath) {
         $this->autoloadPath->addAutoloadPath($autoloadPath);
     }

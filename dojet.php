@@ -11,20 +11,17 @@ include DLIB.'function.inc.php';
 require FRAMEWORK.'Dojet.class.php';
 require FRAMEWORK.'DAutoloader.class.php';
 
-$dojet = Dojet::getInstance();
-
 $autoloader = DAutoloader::getInstance();
 $autoloader->addAutoloadPathArray(
     array(
         FRAMEWORK, DLIB, DMODEL, DUTIL
     )
 );
-$dojet->addAutoloader($autoloader);
-
+DAutoloader::addAutoloader($autoloader);
 ////////////////////////////////////////
 
 function startWebService(WebService $webService) {
-    $dojet = Dojet::getInstance();
+    $dojet = new Dojet();
     try {
         $dojet->start($webService);
     } catch (Exception $e) {

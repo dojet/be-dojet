@@ -27,12 +27,4 @@ class Dojet {
         $service->dojetDidStart();
     }
 
-    public function addAutoloader(IAutoloader $autoloader) {
-        spl_autoload_register(array($autoloader, 'autoload'));
-    }
-
-    public function removeAutoloader(IAutoloader $autoloader) {
-        spl_autoload_unregister(array($autoloader, 'autoload'));
-    }
-
 }
