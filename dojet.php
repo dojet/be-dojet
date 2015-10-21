@@ -8,7 +8,6 @@ define('DUTIL',     DOJET_PATH.'util/');
 date_default_timezone_set('Asia/Chongqing');
 
 include DLIB.'function.inc.php';
-require FRAMEWORK.'Dojet.class.php';
 require FRAMEWORK.'DAutoloader.class.php';
 
 $autoloader = DAutoloader::getInstance();
@@ -18,6 +17,7 @@ $autoloader->addAutoloadPathArray(
     )
 );
 DAutoloader::addAutoloader($autoloader);
+
 ////////////////////////////////////////
 
 function startWebService(WebService $webService) {
@@ -26,7 +26,7 @@ function startWebService(WebService $webService) {
         $dojet->start($webService);
     } catch (Exception $e) {
         $error = 'exception occured, msg: '.$e->getMessage().' errno: '.$e->getCode();
-        print $error;
+        println($error);
         Trace::fatal($error);
     }
 }
