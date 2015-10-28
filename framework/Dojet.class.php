@@ -12,15 +12,6 @@ class Dojet {
      **/
     protected $service;
 
-    protected static $instance;
-
-    public static function getInstance() {
-        if (!self::$instance) {
-            self::$instance = new Dojet();
-        }
-        return self::$instance;
-    }
-
     public function start(Service $service) {
         DAssert::assert($service instanceof Service, 'service must be Service');
         $this->service = $service;

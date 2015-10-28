@@ -12,7 +12,7 @@ class Dispatcher implements IDispatcher {
         $this->webService = $webService;
     }
 
-    public static function addRoute($route, $action, $namespace = '') {
+    public static function route($route, $action, $namespace = '') {
         self::$routes[$route] = array('action' => $action, 'namespace' => $namespace);
     }
 

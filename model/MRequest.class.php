@@ -40,7 +40,7 @@ class MRequest {
         self::$_params[$key] = $value;
     }
 
-    public static function getParam($key) {
+    public static function param($key) {
         return isset(self::$_params[$key]) ? self::$_params[$key] : null;
     }
 
