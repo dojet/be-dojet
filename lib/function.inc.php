@@ -65,34 +65,6 @@ function array_values_recursive($array) {
     return $values;
 }
 
-/*********************** other functions    *********************/
-function pglist($pg, $pgpadding, $pgcount, $tpl_current, $tpl_link, $tpl_padding = '...') {
-    $thepage = 1;
-    $firstpage = ($pg == 1) ? str_replace('{p}', 1, $tpl_current) : strtr($tpl_link, array('{p}' => 1, '{pgno}' => 1));
-
-    $midlist = '';
-    for ($i = max($pg - $pgpadding, 2); $i <= min($pg + $pgpadding, $pgcount - 1); $i++) {
-        if ( $i == $pg ) {
-            $midlist.= str_replace('{p}', $i, $tpl_current);
-        } else {
-            $midlist.= strtr($tpl_link, array('{p}' => $i, '{pgno}' => $i));
-        }
-    }
-
-    $lastpage = '';
-    $pgcount > 1 &&
-        $lastpage = ($pg == $pgcount) ? str_replace('{p}', $pgcount, $tpl_current) : strtr($tpl_link, array('{p}' => $pgcount, '{pgno}' => $pgcount));
-
-    $ret = '';
-    $ret.= $firstpage;
-    $ret.= $pg - $pgpadding > 2 ? $tpl_padding : '';
-    $ret.= $midlist;
-    $ret.= $pg + $pgpadding < $pgcount - 1 ? $tpl_padding : '';
-    $ret.= $lastpage;
-
-    return $ret;
-}
-
 function printbr($str, $flush = true) {
     if ( is_array($str) ) {
         $str = print_r($str, true);
@@ -118,28 +90,6 @@ function printa($array) {
 function printlog($str = '') {
     $log = sprintf("%s %s %s %s", date("y-m-d H:i:s"), posix_getpid(), crc32(uniqid().microtime(true)), $str);
     println($log, true);
-}
-
-function nicetime($timestamp) {
-    $duration = time() - $timestamp;
-
-    $strEcho = date("Y-m-d H:i", $timestamp);
-
-    if( $duration < 60 ){
-        $strEcho = "刚刚";
-    }elseif( $duration < 3600 ){
-        $strEcho = intval($duration/60)."分钟";
-    }elseif( $duration >= 3600 && $duration <= 86400  ){
-        $strEcho = intval($duration/3600)."小时";
-    }elseif( $duration > 86400 && $duration <= 172800 ){
-        $strEcho = '昨天'.date("H:i", $timestamp);
-    }elseif( $duration > 172800 && $duration <= 86400 * 365 ){
-        $strEcho = floor($duration / 86400).'天前';
-    } elseif ( date("Y") === date("Y", $timestamp) ) {
-        $strEcho = date("Y-m-d H:i", $timestamp);
-    }
-
-    return $strEcho;
 }
 
 function datetime($time = null) {
