@@ -66,4 +66,14 @@ class DAssert {
         DAssert::assert(!empty($array), 'array should not be empty');
     }
 
+    public static function assertFileExists($filename, $message = null) {
+        setValueIfNull($message, "$filename not exists");
+        DAssert::assert(file_exists($filename), $message);
+    }
+
+    public static function assertNotFalse($condition, $message = null) {
+        setValueIfNull($message, "value can not be false");
+        DAssert::assert(false !== $condition, $message);
+    }
+
 }

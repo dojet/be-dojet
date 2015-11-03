@@ -7,5 +7,8 @@
 abstract class Service {
 
     public function dojetDidStart() {}
+    public function modules() {
+        return array();
+    }
 
 }
