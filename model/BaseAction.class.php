@@ -42,6 +42,16 @@ abstract class BaseAction {
         exit();
     }
 
+    protected function templatePrefix($template) {
+        return '';
+    }
+
+    protected function displayTemplate($template) {
+        $prefix = $this->templatePrefix($template);
+        $template = $prefix.$template;
+        return $this->display($template);
+    }
+
     abstract public function execute();
 
 }
