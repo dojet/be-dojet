@@ -49,8 +49,7 @@ class DAssert {
      * @param mix $array
      */
     public static function assertNumericArray($array) {
-        DAssert::assert(is_array($array), 'not an array');
-
+        DAssert::assertArray($array);
         foreach ($array as $val) {
             DAssert::assertIntNumeric($val);
         }
@@ -62,18 +61,20 @@ class DAssert {
      * @param mix $array
      */
     public static function assertNotEmptyNumericArray($array) {
-        DAssert::assertNumericArray($array);
         DAssert::assert(!empty($array), 'array should not be empty');
+        DAssert::assertNumericArray($array);
+    }
+
+    public static function assertArray($var, $message = null) {
+        DAssert::assert(is_array($var), defaultNullValue($message, 'not an array'));
     }
 
     public static function assertFileExists($filename, $message = null) {
-        setValueIfNull($message, "$filename not exists");
-        DAssert::assert(file_exists($filename), $message);
+        DAssert::assert(file_exists($filename), defaultNullValue($message, "$filename not exists"));
     }
 
     public static function assertNotFalse($condition, $message = null) {
-        setValueIfNull($message, "value can not be false");
-        DAssert::assert(false !== $condition, $message);
+        DAssert::assert(false !== $condition, defaultNullValue($message, "value can not be false"));
     }
 
 }

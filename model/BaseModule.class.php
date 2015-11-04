@@ -9,21 +9,14 @@
  */
 abstract class BaseModule {
 
-    private static $modules = array();
-
     public static function module() {
         return SingletonFactory::getInstance(get_called_class());
     }
 
     final public static function init() {
-        $depends = self::module()->depends();
-        foreach ($depends as $module) {
-            if (array_key_exists($module, self::$modules)) {
-                continue;
-            }
-            self::$modules[$module] = $module;
-            $moduleInit = __DIR__.'/../../'.$module.'/init.php';
-            require $moduleInit;
+        $depends = static::module()->depends();
+        foreach ($depends as $moduleBundle) {
+            Dojet::initModule($moduleBundle);
         }
     }
 
