@@ -13,7 +13,7 @@ require FRAMEWORK.'DAutoloader.class.php';
 $autoloader = DAutoloader::getInstance();
 $autoloader->addAutoloadPathArray(
     array(
-        FRAMEWORK, DLIB, DMODEL, DUTIL
+        FRAMEWORK, DLIB, DMODEL
     )
 );
 DAutoloader::addAutoloader($autoloader);
