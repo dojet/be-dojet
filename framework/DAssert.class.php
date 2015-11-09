@@ -69,6 +69,10 @@ class DAssert {
         DAssert::assert(is_array($var), defaultNullValue($message, 'not an array'));
     }
 
+    public static function assertKeyExists($key, $array, $message = null) {
+        DAssert::assert(array_key_exists($key, $array), defaultNullValue($message, 'key not exists'));
+    }
+
     public static function assertFileExists($filename, $message = null) {
         DAssert::assert(file_exists($filename), defaultNullValue($message, "$filename not exists"));
     }

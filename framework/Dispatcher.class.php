@@ -16,6 +16,19 @@ class Dispatcher implements IDispatcher {
         self::$routes[$route] = array('action' => $action, 'namespace' => $namespace);
     }
 
+    public static function loadRoute($routeConfig) {
+        foreach ($routeConfig as $route => $config) {
+            if (is_string($config)) {
+                $action = $config;
+                Dispatcher::route($route, $action);
+            } elseif (is_array($config)) {
+                DAssert::assertKeyExists('action', $config);
+                DAssert::assertKeyExists('namespace', $config);
+                Dispatcher::route($config['action'], $config['namespace']);
+            }
+        }
+    }
+
     public function dispatch($requestUri) {
 
         foreach (self::$routes as $routeRegx => $actionInfo) {
