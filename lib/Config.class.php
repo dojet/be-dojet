@@ -4,8 +4,12 @@ class Config {
     private static $config;
 
     public static function loadConfig($confFile) {
-        $filename = $confFile.'.conf.php';
-        DAssert::assert(file_exists($filename), 'conf file not exist! '.$filename);
+        $runtime = MRuntime::currentRuntime();
+        $filename = sprintf("%s.%s.conf.php", $confFile, $runtime);
+        if (!file_exists($filename)) {
+            $filename = $confFile.'.conf.php';
+            DAssert::assert(file_exists($filename), 'conf file not exist! '.$filename);
+        }
         require_once($filename);
     }
 
