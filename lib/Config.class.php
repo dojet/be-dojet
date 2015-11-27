@@ -23,7 +23,6 @@ class Config {
         if (is_null($config)) {
             $config = self::$config;
         }
-
         return XPath::path($keyPath, $config);
     }
 

@@ -202,14 +202,6 @@ function defaultEmptyValue($var, $defaultValue = null) {
     return empty($var) ? $defaultValue : $var;
 }
 
-function sgn($num) {
-    DAssert::assert(is_numeric($num), 'sgn param must be numeric');
-    if ($num == 0) {
-        return 0;
-    }
-    return abs($num) / $num;
-}
-
 if (!function_exists('sys_get_temp_dir')) {
     function sys_get_temp_dir() {
         if (!empty($_ENV['TMP'])) { return realpath($_ENV['TMP']); }

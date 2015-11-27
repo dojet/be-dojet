@@ -14,14 +14,7 @@ abstract class BaseModule {
     }
 
     final public static function init() {
-        $depends = static::module()->depends();
-        foreach ($depends as $moduleBundle) {
-            Dojet::initModule($moduleBundle);
-        }
-    }
 
-    protected function depends() {
-        return array();
     }
 
 }

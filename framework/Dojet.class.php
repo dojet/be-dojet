@@ -10,14 +10,11 @@ class Dojet {
     private static $modules = array();
 
     public function start(Service $service) {
-        #init modules
-        $modules = $service->modules();
-        DAssert::assertArray($modules, 'Service::modules() must return array');
-        foreach ($service->modules() as $moduleBundle) {
-            Dojet::initModule($moduleBundle);
-        }
-
         $service->dojetDidStart();
+    }
+
+    public static function addModule($module) {
+        require_once __DIR__.'/../../'.$module.'/init.php';
     }
 
     public static function initModule($moduleBundle) {
