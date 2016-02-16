@@ -1,7 +1,7 @@
 <?php
 class DAssert {
 
-	/**
+    /**
      * 封装断言
      *
      * @param bool $condition
