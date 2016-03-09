@@ -7,8 +7,8 @@ class Config {
         $filename = sprintf("%s.%s.conf.php", $confFile, MRuntime::currentRuntime());
         if (!file_exists($filename)) {
             $filename = $confFile.'.conf.php';
-            DAssert::assert(file_exists($filename), 'conf file not exist! '.$filename);
         }
+        DAssert::assert(file_exists($filename), 'conf file not exist! '.$filename);
         require_once($filename);
     }
 
@@ -59,4 +59,5 @@ class Config {
         }
         return Config::configForKeyPath($runtimeKeypath);
     }
+
 }

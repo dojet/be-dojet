@@ -8,4 +8,8 @@ abstract class Service {
 
     public function dojetDidStart() {}
 
+    public function classCachePath() {
+        return sys_get_temp_dir();
+    }
+
 }

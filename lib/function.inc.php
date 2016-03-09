@@ -65,7 +65,7 @@ function array_values_recursive($array) {
     return $values;
 }
 
-function printbr($str, $flush = true) {
+function printbr($str = '', $flush = true) {
     if ( is_array($str) ) {
         $str = print_r($str, true);
     }
