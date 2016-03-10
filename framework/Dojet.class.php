@@ -14,7 +14,7 @@ class Dojet {
     }
 
     public static function addModule($module) {
-        require_once __DIR__.'/../../'.$module.'/init.php';
+        require_once $module.'/init.php';
     }
 
     public static function initModule($moduleBundle) {
