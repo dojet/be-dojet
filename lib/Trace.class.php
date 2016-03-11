@@ -8,6 +8,7 @@
 class Trace implements ITraceDelegate {
 
     private static $instance;
+    private static $config;
 
     const DEBUG = 0x1;
     const NOTICE= 0x2;
@@ -41,16 +42,17 @@ class Trace implements ITraceDelegate {
         return self::$instance;
     }
 
-    public function setDelegate(ITraceDelegate $delegate) {
+    public function _setDelegate(ITraceDelegate $delegate) {
         $this->delegate = $delegate;
+    }
+
+    public static function setDelegate(ITraceDelegate $delegate) {
+        $traceObj = self::getInstance();
+        $traceObj->_setDelegate($delegate);
     }
 
     public static function setTraceLevel($traceLevel) {
         self::$traceLevel = $traceLevel;
-    }
-
-    public static function traceOff() {
-        self::setTraceLevel(self::TRACE_OFF);
     }
 
     public static function requestID() {
