@@ -28,6 +28,7 @@ class Trace implements ITraceDelegate {
     protected static $traceLevel = 0xffff;
 
     function __construct() {
+        self::$instance = $this;
         $this->setDelegate($this);
     }
 
