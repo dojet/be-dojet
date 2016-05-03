@@ -8,6 +8,14 @@
 class Dojet {
 
     private static $modules = array();
+    private static $v = array();
+
+    public static function v($key, $value = null) {
+        if (is_null($value)) {
+            return isset(self::$v[$key]) ? self::$v[$key] : '';
+        }
+        self::$v[$key] = $value;
+    }
 
     public function start(Service $service) {
         $service->dojetDidStart();

@@ -29,6 +29,10 @@ abstract class BaseAction {
      * @param string $template
      */
     protected function display($template) {
+        if (Dojet::v('is_debug')) {
+            return $this->displayDebug();
+        }
+
         $templateFile = $template;
         DAssert::assert(file_exists($templateFile), 'template not exist. '.$template);
 
