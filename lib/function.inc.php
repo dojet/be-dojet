@@ -83,6 +83,10 @@ function println($str = '', $flush = true){
     if ( $flush ) flush();
 }
 
+function printl($v) {
+    println(join("\t", func_get_args()));
+}
+
 function printa($array) {
     print nl2br(str_replace(array(' ', "\t"), '&nbsp;', print_r($array, true)));
 }
