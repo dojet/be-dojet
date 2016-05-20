@@ -12,6 +12,25 @@ class Config {
         require_once($filename);
     }
 
+    public static function set($keyPath, $value, &$config = null) {
+        $key = strtok($keyPath, '.');
+        if (is_null($config)) {
+            $config = &self::$config;
+        }
+        while ($key) {
+            if (!is_array($config)) {
+                $config = array();
+            }
+
+            if (!key_exists($key, (array)$config)) {
+                $config[$key] = null;
+            }
+            $config = &$config[$key];
+            $key = strtok('.');
+        }
+        $config = $value;
+    }
+
     /**
      * 通过keypath获取value
      * keypath是以'.'分割的字符串

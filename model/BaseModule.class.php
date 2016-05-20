@@ -23,6 +23,7 @@ abstract class BaseModule {
         if (is_null($value)) {
             return Config::configForKeyPath($keypath, static::$config);
         }
+        Config::set($keypath, $value, static::$config);
     }
 
 }
