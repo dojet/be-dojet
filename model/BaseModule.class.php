@@ -9,13 +9,14 @@
  */
 abstract class BaseModule {
 
-    protected static $config;
+    protected static $config = array();
 
     public static function module() {
         return SingletonFactory::getInstance(get_called_class());
     }
 
-    final public static function init($config) {
+    final public static function init($config = array()) {
+        DAssert::assertArray($config);
         static::$config = $config;
     }
 
