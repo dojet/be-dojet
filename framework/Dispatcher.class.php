@@ -24,8 +24,15 @@ class Dispatcher implements IDispatcher {
             } elseif (is_array($config)) {
                 DAssert::assertKeyExists('action', $config);
                 DAssert::assertKeyExists('namespace', $config);
-                Dispatcher::route($config['action'], $config['namespace']);
+                Dispatcher::route($route, $config['action'], $config['namespace']);
             }
+        }
+    }
+
+    public static function loadNamespaceRoute($namespace, $routeConfig) {
+        foreach ($routeConfig as $route => $action) {
+            DAssert::assertString($action);
+            Dispatcher::route($route, $action, $namespace);
         }
     }
 
