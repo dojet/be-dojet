@@ -46,6 +46,10 @@ abstract class BaseAction {
         exit();
     }
 
+    protected function displayDebug() {
+        printa($this->tplData);
+    }
+
     protected function templatePrefix($template) {
         return '';
     }
