@@ -206,6 +206,16 @@ function defaultEmptyValue($var, $defaultValue = null) {
     return empty($var) ? $defaultValue : $var;
 }
 
+function is_empty($var) {
+    for ($i = 0; $i < func_num_args(); $i++) {
+        $arg = func_get_arg($i);
+        if (empty($var)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 if (!function_exists('sys_get_temp_dir')) {
     function sys_get_temp_dir() {
         if (!empty($_ENV['TMP'])) { return realpath($_ENV['TMP']); }
