@@ -22,7 +22,13 @@ class Dojet {
     }
 
     public static function addModule($module) {
-        require_once $module.'/init.php';
+        $modpath = realpath($module);
+        $modkey = md5($modpath);
+        if (isset(self::$modules[$modkey])) {
+            return;
+        }
+        self::$modules[$modkey] = $modpath;
+        require_once $modpath.'/init.php';
     }
 
 }

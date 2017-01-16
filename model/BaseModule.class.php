@@ -27,4 +27,10 @@ abstract class BaseModule {
         Config::set($keypath, $value, static::$config);
     }
 
+    public static function dirname() {
+        $obj = new ReflectionObject(static::module());
+        $filename = $obj->getFilename();
+        return dirname($filename);
+    }
+
 }
