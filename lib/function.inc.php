@@ -20,6 +20,25 @@ function _iconvEx($in_charset, $out_charset, $str) {
     return $ret;
 }
 
+function copyr($source, $dest, $mode = 0777) {
+    assert(is_dir($source));
+    if (!file_exists($dest)) {
+        mkdir($dest, $mode, true);
+    }
+    if ($dh = opendir($source)) {
+        while (false !== ($file = readdir($dh))) {
+            if (in_array($file, array('.', '..'))) {
+                continue;
+            } elseif (is_dir($file)) {
+                copyr($source.DIRECTORY_SEPARATOR.$file, $dest.DIRECTORY_SEPARATOR.$file);
+            } else {
+                copy($source.DIRECTORY_SEPARATOR.$file, $dest.DIRECTORY_SEPARATOR.$file);
+            }
+        }
+    }
+
+}
+
 function array2object($array) {
     $obj = (object)$array;
     foreach ((array)$array as $key => $value) {
