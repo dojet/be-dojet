@@ -29,7 +29,7 @@ function copyr($source, $dest, $mode = 0777) {
         while (false !== ($file = readdir($dh))) {
             if (in_array($file, array('.', '..'))) {
                 continue;
-            } elseif (is_dir($file)) {
+            } elseif (is_dir($source.DIRECTORY_SEPARATOR.$file)) {
                 copyr($source.DIRECTORY_SEPARATOR.$file, $dest.DIRECTORY_SEPARATOR.$file);
             } else {
                 copy($source.DIRECTORY_SEPARATOR.$file, $dest.DIRECTORY_SEPARATOR.$file);
