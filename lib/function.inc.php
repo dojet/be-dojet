@@ -149,8 +149,7 @@ function safeNew($className) {
 }
 
 function safeCallMethod($obj, $func, &$params) {
-    $args = array(&$params);
-    for ($i = 3; $i < func_num_args(); $i++) {
+    for ($i = 2; $i < func_num_args(); $i++) {
         $arg = func_get_arg($i);
         $args[] = &$arg;
         unset($arg);

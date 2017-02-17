@@ -45,7 +45,7 @@ class DAssert {
     public static function assertNumericArray($array) {
         DAssert::assertArray($array);
         foreach ($array as $val) {
-            DAssert::assertIntNumeric($val);
+            DAssert::assertNumeric($val);
         }
     }
 
