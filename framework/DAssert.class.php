@@ -30,17 +30,11 @@ class DAssert {
         die();
     }
 
-    /**
-     * 数字断言
-     *
-     * @param mix $var
-     */
-    public static function assertIntNumeric($var) {
-        DAssert::assert(is_numeric($var), 'nan, '.var_export($var, true));
-    }
-
     public static function assertNumeric($var) {
-        DAssert::assert(is_numeric($var), 'nan, '.var_export($var, true));
+        $args = func_get_args();
+        foreach ($args as $var) {
+            DAssert::assert(is_numeric($var), 'nan, '.var_export($var, true));
+        }
     }
 
     /**
