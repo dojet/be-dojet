@@ -19,7 +19,7 @@ abstract class BaseAction {
      * @param string $key
      * @param mix $value
      */
-    protected function assign($key, $value) {
+    public function assign($key, $value) {
         $this->tplData[$key] = $value;
     }
 
