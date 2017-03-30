@@ -267,6 +267,13 @@ if (!function_exists('array_column')) {
     }
 }
 
+function array_val($key, $array, $default = null) {
+    if (key_exists($key, $array)) {
+        return $array[$key];
+    }
+    return $default;
+}
+
 function array_column_recursive($array, $columnPath) {
     $keypath = explode('.', $columnPath);
     $key = array_shift($keypath);
