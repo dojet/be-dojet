@@ -12,7 +12,7 @@ class XPath {
     public static function path($xpath, $array) {
         $key = strtok($xpath, '.');
 
-        while (false !== $key && $array) {
+        while (false !== $key) {
             if (!key_exists($key, (array)$array)) {
                 return null;
             }

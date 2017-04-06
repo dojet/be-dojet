@@ -38,11 +38,15 @@ class Config {
      * @param string $keyPath
      * @return mix
      */
-    public static function configForKeyPath($keyPath, $config = null) {
+    public static function configForKeyPath($keyPath, $config = null, $default = null) {
         if (is_null($config)) {
             $config = self::$config;
         }
-        return XPath::path($keyPath, $config);
+        $value = XPath::path($keyPath, $config);
+        if (is_null($value)) {
+            $value = $default;
+        }
+        return $value;
     }
 
     public static function &configRefForKeyPath($keyPath) {
