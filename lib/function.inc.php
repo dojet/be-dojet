@@ -362,3 +362,10 @@ if (!function_exists('posix_getpid')) {
 function timems() {
     return round(microtime_float() * 1000);
 }
+
+function include_if_exists($file, $params = []) {
+    if (file_exists($file)) {
+        extract($params);
+        include $file;
+    }
+}
