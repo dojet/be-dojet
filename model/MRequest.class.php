@@ -15,6 +15,10 @@ class MRequest {
         return $_POST;
     }
 
+    public static function rawPost() {
+        return $GLOBALS["HTTP_RAW_POST_DATA"];
+    }
+
     public static function request($key) {
         return isset($_REQUEST[$key]) ? $_REQUEST[$key] : null;
     }
@@ -36,19 +40,15 @@ class MRequest {
         return isset($_FILES[$key]) ? $_FILES[$key] : null;
     }
 
-    public static function setParam($key, $value) {
-        self::$_params[$key] = $value;
+    public static function param($key, $value = null) {
+        if (is_null($value)) {
+            return isset(self::$_params[$key]) ? self::$_params[$key] : null;
+        } else {
+            self::$_params[$key] = $value;
+        }
     }
 
-    public static function param($key) {
-        return isset(self::$_params[$key]) ? self::$_params[$key] : null;
-    }
-
-    public static function fillParams($arrParams) {
-        self::$_params = $arrParams;
-    }
-
-    public static function getAllParams() {
+    public static function allParams() {
         return self::$_params;
     }
 }

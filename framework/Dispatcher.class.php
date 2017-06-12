@@ -41,7 +41,7 @@ class Dispatcher implements IDispatcher {
         foreach (self::$routes as $routeRegx => $actionInfo) {
             if ( preg_match($routeRegx, $requestUri, $reg) ) {
                 foreach ($reg as $key => $value) {
-                    MRequest::setParam($key, $value);
+                    MRequest::param($key, $value);
                 }
 
                 $actionName = $actionInfo['action'];
@@ -55,7 +55,7 @@ class Dispatcher implements IDispatcher {
                 require_once($classFile);
 
                 $className = $namespace.basename($actionName);
-                $action = new $className;
+                $action = new $className($this->webService);
 
                 DAssert::assert($action instanceof BaseAction,
                     'action is not BaseAction. '.$actionName);

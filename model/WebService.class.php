@@ -6,6 +6,18 @@
  */
 abstract class WebService extends Service {
 
+    protected static $instance;
+
+    public static function service() {
+        if (is_null(static::$instance)) {
+            $class = get_called_class();
+            static::$instance = new $class();
+        }
+        return static::$instance;
+    }
+
+    abstract public function root();
+
     public function dispatcher() {
         return new Dispatcher($this);
     }

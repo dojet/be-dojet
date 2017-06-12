@@ -8,9 +8,15 @@
 abstract class BaseAction {
 
     protected $tplData;
+    private $webService;
 
-    function __construct() {
+    function __construct(WebService $webService) {
+        $this->webService = $webService;
         $this->tplData = array();
+    }
+
+    protected function webService() {
+        return $this->webService;
     }
 
     /**
