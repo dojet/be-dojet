@@ -75,6 +75,10 @@ class DAssert {
         DAssert::assert(false !== $condition, defaultNullValue($message, "value can not be false"));
     }
 
+    public static function assertNotNull($condition, $message = null) {
+        DAssert::assert(null !== $condition, defaultNullValue($message, "value can not be null"));
+    }
+
     public static function assertString($var, $message = null) {
         DAssert::assert(is_string($var), defaultNullValue($message, 'not a string'));
     }
